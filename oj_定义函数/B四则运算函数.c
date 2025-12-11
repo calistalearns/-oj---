@@ -1,40 +1,88 @@
-# include <stdio.h>
-# include <string.h>
-//add(a,b)=a+b; sub(a,b)=a-b; mul(a,b)=a*b; div(a,b)=a/b
-int add(int a,int b)
+#include <stdio.h>
+#include <string.h>
+
+int add(int a, int b)
 {
-    return a+b;
+    return a + b;
 }
-int sub(int a,int b)
+
+int sub(int a, int b)
 {
-    return a-b;
+    return a - b;
 }
-int mul(int a,int b)
+
+int mul(int a, int b)
 {
-    return a*b;
+    return a * b;
 }
-float div(int a,int b)
+
+float div(int a, int b)
 {
-    if (b==0)
+    if (b == 0)
     {
-        printf("error\n");
-        return 1;
+        return 0;
     }
     else
     {
-        if(a%b!=0)
-        {
-            return a/b;
-        }
-        else
-        return (int)a/b;
+        return (float)a / b;
     }
-    
 }
+
 int main()
 {
-    int str[5]={0};
-    strcmp()
-
+    int n;
+    scanf("%d", &n);
+    getchar();
+    
+    char line[100];
+    int a, b;
+    char str[10];
+    
+    for (int i = 0; i < n; i++)
+    {
+        fgets(line, sizeof(line), stdin);
+        
+        int parsed = sscanf(line, "%9[^(](%d,%d)", str, &a, &b);
+        
+        if (parsed != 3)
+        {
+            continue;
+        }
+        
+        if (strcmp(str, "add") == 0)
+        {
+            printf("%d\n", add(a, b));
+        }
+        else if (strcmp(str, "sub") == 0)
+        {
+            printf("%d\n", sub(a, b));
+        }
+        else if (strcmp(str, "mul") == 0)
+        {
+            printf("%d\n", mul(a, b));
+        }
+        else if (strcmp(str, "div") == 0)
+        {
+            if (b == 0)
+            {
+                printf("error\n");
+            }
+            else
+            {
+                float result = (float)a / b;
+                int int_result = a / b;
+                
+                if (a % b == 0)
+                {
+                    printf("%d\n", int_result);
+                }
+                else
+                {
+                    printf("%.2f\n", result);
+                }
+            }
+        }
+    }
+    
     return 0;
 }
